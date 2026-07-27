@@ -18,12 +18,18 @@ Silly Map bridges the gap between text and visuals by giving your characters a p
 
 To install the Silly Map extension into your SillyTavern instance, follow these steps:
 
+### Method A: Install via SillyTavern UI (Recommended)
+1. In SillyTavern, open **Extensions** → **Install extension**.
+2. Paste this repository's Git URL and install.
+3. Enable **Silly Map** and refresh the page.
+
+### Method B: Manual install
 1. Download the latest `.zip` archive of this repository (click **Code > Download ZIP** or grab the latest version from the **Releases** tab).
 2. Extract the downloaded archive.
-3. Move the extracted folder into your SillyTavern extensions directory.
-   * **Target Path:** `[SillyTavern-Folder]/public/scripts/extensions/silly-map/`
-4. Restart your SillyTavern server and refresh your browser page. 
-5. You should now see the Silly Map interface available within your SillyTavern menus.
+3. Move the extracted folder into your SillyTavern third-party extensions directory.
+   * **Target Path:** `[SillyTavern-Folder]/public/scripts/extensions/third-party/Silly-Map/`
+4. Restart your SillyTavern server and refresh your browser page.
+5. Enable **Silly Map** in the Extensions menu.
 
 ---
 
@@ -46,7 +52,7 @@ If direct installation is not supported by your browser:
 1. Click **Download ZIP** on the desired map page in the Marketplace.
 2. Extract the map folder.
 3. Place the extracted map folder into the appropriate Silly Map locations directory within your SillyTavern folder.
-   * **Target Path:** `[SillyTavern-Folder]/public/scripts/extensions/silly-map/assets/locations/`
+   * **Target Path:** `[SillyTavern-Folder]/public/scripts/extensions/third-party/Silly-Map/assets/locations/`
 4. In SillyTavern, open the extension menu, click **"Add location"**, and enter the exact folder name. Alternatively, manually add the folder name to the `locations_index.json` file.
 
 ---
