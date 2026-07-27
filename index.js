@@ -25,14 +25,14 @@ const ICONS = {
     linkOff: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="2" y1="2" x2="22" y2="22"/></svg>`,
 };
 
-import { eventSource, event_types, generateQuietPrompt, generateRaw, getThumbnailUrl, getRequestHeaders, characters, this_chid, name1, main_api, getCurrentChatId } from "../../../../script.js";
-import { SECRET_KEYS, findSecret } from "../../secrets.js";
+import { eventSource, event_types, generateQuietPrompt, generateRaw, getThumbnailUrl, getRequestHeaders, characters, this_chid, name1, main_api, getCurrentChatId } from "../../../../../script.js";
+import { SECRET_KEYS, findSecret } from "../../../secrets.js";
 import { toast } from "./toast.js";
-import { user_avatar } from "../../personas.js";
-import { groups, selected_group } from "../../group-chats.js";
-import { getChatCompletionModel, openai_settings, chat_completion_sources } from "../../openai.js";
-import { getTextGenModel } from "../../textgen-settings.js";
-import { isMobile } from "../../RossAscends-mods.js";
+import { user_avatar } from "../../../personas.js";
+import { groups, selected_group } from "../../../group-chats.js";
+import { getChatCompletionModel, openai_settings, chat_completion_sources } from "../../../openai.js";
+import { getTextGenModel } from "../../../textgen-settings.js";
+import { isMobile } from "../../../RossAscends-mods.js";
 
 jQuery(async () => {
     // =========================================================
@@ -182,7 +182,8 @@ jQuery(async () => {
         </div>
     `;
 
-    const ASSETS_PATH = "/scripts/extensions/silly-map/assets/";
+    // Resolve relative to this module so UI installs under third-party/<repo>/ work.
+    const ASSETS_PATH = new URL("./assets/", import.meta.url).pathname;
 
     // --- ДАНІ РУШІЯ ---
     // Список folder-id встановлених локацій. Джерела:
