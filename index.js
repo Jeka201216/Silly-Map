@@ -1,38 +1,20 @@
-// =========================================================
-// SVG ІКОНКИ (замість емодзі)
-// Lucide-style stroke icons, inherit currentColor.
-// =========================================================
-const ICONS = {
-    map: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`,
-    users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-    settings: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
-    search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>`,
-    close: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
-    plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5v14"/></svg>`,
-    minus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>`,
-    chevronUp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>`,
-    chevronLeft: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>`,
-    chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>`,
-    back: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5 5.5 5.5 0 0 1-5.5 5.5H11"/></svg>`,
-    ai: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/></svg>`,
-    image: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5L12 17"/></svg>`,
-    file: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
-    check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
-    pin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14l-1.5-9h2L17 5H7L4.5 8h2L5 17z"/></svg>`,
-    refresh: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 6.36 2.64L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-6.36-2.64L3 16"/><path d="M3 21v-5h5"/></svg>`,
-    trash: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
-    link: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
-    linkOff: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="2" y1="2" x2="22" y2="22"/></svg>`,
-};
-
-import { eventSource, event_types, generateQuietPrompt, generateRaw, getThumbnailUrl, getRequestHeaders, characters, this_chid, name1, main_api, getCurrentChatId } from "../../../../../script.js";
-import { SECRET_KEYS, findSecret } from "../../../secrets.js";
+import { eventSource, event_types, generateQuietPrompt, generateRaw, getThumbnailUrl, getRequestHeaders, characters, this_chid, name1, main_api, getCurrentChatId } from "../../../../script.js";
+import { SECRET_KEYS, secret_state, readSecretState, writeSecret } from "../../secrets.js";
 import { toast } from "./toast.js";
-import { user_avatar } from "../../../personas.js";
-import { groups, selected_group } from "../../../group-chats.js";
-import { getChatCompletionModel, openai_settings, chat_completion_sources } from "../../../openai.js";
-import { getTextGenModel } from "../../../textgen-settings.js";
-import { isMobile } from "../../../RossAscends-mods.js";
+import { ICONS } from "./icons.js";
+import { getWalkableGrid, findGridPath } from "./pathfinding.js";
+import { user_avatar } from "../../personas.js";
+import { groups, selected_group } from "../../group-chats.js";
+import { getChatCompletionModel, openai_settings, chat_completion_sources } from "../../openai.js";
+import { getTextGenModel } from "../../textgen-settings.js";
+import { isMobile } from "../../RossAscends-mods.js";
+
+// Іконка ICONS.refresh виглядає як "оновити" — у "зайнятому" стані AI-кнопок
+// обгортаємо її в клас, що крутиться (style.css: .dnd-icon-spin), щоб було
+// зрозуміло, що йде завантаження, а не пропозиція повторити запит.
+function spinningIcon() {
+    return `<span class="dnd-icon-spin">${ICONS.refresh}</span>`;
+}
 
 jQuery(async () => {
     // =========================================================
@@ -45,6 +27,7 @@ jQuery(async () => {
                 <button class="dnd-tool-btn" id="dnd-tool-locations" data-panel="locations" title="Locations (worlds)">${ICONS.map}</button>
                 <button class="dnd-tool-btn" id="dnd-tool-tokens" data-panel="tokens" title="Tokens (characters)">${ICONS.users}</button>
                 <button class="dnd-tool-btn" id="dnd-tool-settings" data-panel="settings" title="Settings">${ICONS.settings}</button>
+                <button class="dnd-tool-btn-action" id="dnd-ai-quickbar-btn" title="AI: Update positions" style="display:none;">${ICONS.ai}</button>
             </div>
 
             <!-- ПАНЕЛЬ ЛОКАЦІЙ -->
@@ -56,21 +39,32 @@ jQuery(async () => {
                     </div>
                 </div>
                 <div class="dnd-panel-body">
-                    <div class="dnd-search-wrap">
-                        ${ICONS.search}
-                        <input id="dnd-locs-search" class="dnd-search-input" placeholder="Search location..." autocomplete="off">
+                    <div class="dnd-locs-toolbar-row">
+                        <div class="dnd-search-wrap">
+                            ${ICONS.search}
+                            <input id="dnd-locs-search" class="dnd-search-input" placeholder="Search location..." autocomplete="off">
+                        </div>
+                        <button id="dnd-locs-view-toggle" class="dnd-view-toggle-btn" title="Switch to list view">${ICONS.list}</button>
                     </div>
                     <div id="dnd-add-loc-inline" class="dnd-add-loc-inline" style="display:none;">
                         <input id="dnd-add-loc-input" class="dnd-ui-input" placeholder="Folder name (e.g. modern_apartment_01)" autocomplete="off" spellcheck="false">
                         <button id="dnd-add-loc-confirm" class="dnd-ui-btn dnd-btn-add-confirm" title="Confirm">${ICONS.check}</button>
                         <button id="dnd-add-loc-cancel" class="dnd-ui-btn dnd-btn-secondary dnd-btn-add-confirm" title="Cancel">${ICONS.close}</button>
                     </div>
+                    <div id="dnd-install-id-inline" class="dnd-add-loc-inline" style="display:none;">
+                        <input id="dnd-install-id-input" class="dnd-ui-input" placeholder="Paste location ID from the Maps site" autocomplete="off" spellcheck="false">
+                        <button id="dnd-install-id-confirm" class="dnd-ui-btn dnd-btn-add-confirm" title="Confirm">${ICONS.check}</button>
+                        <button id="dnd-install-id-cancel" class="dnd-ui-btn dnd-btn-secondary dnd-btn-add-confirm" title="Cancel">${ICONS.close}</button>
+                    </div>
                     <div id="dnd-locs-grid" class="dnd-locs-grid"></div>
-                    <button id="dnd-ai-generate-loc-btn" class="dnd-ui-btn dnd-ai-btn">
-                        ${ICONS.ai} By story
-                    </button>
-                    <a href="https://silly-map.nero-dev.online" target="_blank" id="dnd-site-link" class="dnd-ui-btn dnd-btn-secondary">${ICONS.link} Explore Maps</a>
-                    <button id="dnd-add-location-btn" class="dnd-ui-btn dnd-btn-secondary">${ICONS.plus} Add location</button>
+                    <div class="dnd-loc-actions-row">
+                        <button id="dnd-ai-generate-loc-btn" class="dnd-ui-btn dnd-ai-btn" title="By story">
+                            ${ICONS.ai} By story
+                        </button>
+                        <a href="https://silly-map.nero-dev.online" target="_blank" id="dnd-site-link" class="dnd-ui-btn dnd-btn-secondary" title="Explore Maps">${ICONS.link} Maps</a>
+                        <button id="dnd-install-by-id-btn" class="dnd-ui-btn dnd-btn-secondary" title="Install a location from the Maps site by ID (requires the server plugin)" style="display:none;">${ICONS.pin} Install by ID</button>
+                        <button id="dnd-add-location-btn" class="dnd-ui-btn dnd-btn-secondary" title="Add location">${ICONS.plus} Add</button>
+                    </div>
                 </div>
             </div>
 
@@ -137,19 +131,38 @@ jQuery(async () => {
                             <span class="dnd-current-model-label">Active default model</span>
                             <span id="dnd-current-model-name" class="dnd-current-model-name">…</span>
                         </div>
-                        <input type="text" id="dnd-ai-model-input" class="dnd-ui-input" placeholder="Override: e.g. google/gemini-flash-1.5">
+                        <input type="text" id="dnd-ai-model-input" class="dnd-ui-input" list="dnd-openrouter-models-list" placeholder="Override: e.g. google/gemini-flash-1.5">
+                        <datalist id="dnd-openrouter-models-list"></datalist>
                         <div class="dnd-btn-row">
                             <button id="dnd-save-settings-btn" class="dnd-ui-btn flex1">${ICONS.check} Save</button>
                             <button id="dnd-reset-model-btn" class="dnd-ui-btn dnd-btn-secondary flex1" title="Reset override and use default">${ICONS.refresh} Default</button>
                         </div>
-                        <span class="dnd-ui-hint">If override is empty — the default SillyTavern model is used.</span>
+                        <span class="dnd-ui-hint">Override is routed through SillyTavern's own server using your saved OpenRouter API key. If empty (or no key is saved) — the default SillyTavern model is used.</span>
+                        <span id="dnd-override-availability" class="dnd-ui-hint dnd-hint-status" style="display:none;"></span>
+                        <div id="dnd-openrouter-key-row" class="dnd-openrouter-key-row" style="display:none;">
+                            <input type="password" id="dnd-openrouter-key-input" class="dnd-ui-input" placeholder="Paste OpenRouter API key (sk-or-...)" autocomplete="off" spellcheck="false">
+                            <button id="dnd-save-openrouter-key-btn" class="dnd-ui-btn dnd-btn-secondary" title="Save key to SillyTavern Secrets">${ICONS.check}</button>
+                        </div>
                     </div>
                     <hr class="dnd-ui-divider">
-                    <label class="dnd-settings-checkbox" for="dnd-inject-scene-toggle">
-                        <input type="checkbox" id="dnd-inject-scene-toggle" class="checkbox">
-                        <span>Inject scene into chat</span>
-                    </label>
-                    <span class="dnd-ui-hint">Add descriptions of objects and characters to the generation context.</span>
+                    <div class="dnd-ui-group">
+                        <span class="dnd-ui-label">Scene context</span>
+                        <label class="dnd-settings-checkbox" for="dnd-inject-scene-toggle">
+                            <input type="checkbox" id="dnd-inject-scene-toggle" class="checkbox">
+                            <span>Inject scene into chat</span>
+                        </label>
+                        <span class="dnd-ui-hint">Add descriptions of objects and characters to the generation context.</span>
+                    </div>
+                    <hr class="dnd-ui-divider">
+                    <div class="dnd-ui-group" id="dnd-inject-rooms-group">
+                        <span class="dnd-ui-label">Inject rooms list</span>
+                        <select id="dnd-inject-rooms-select" class="dnd-ui-select">
+                            <option value="never">Never (Unknown map)</option>
+                            <option value="once">Once (On activation)</option>
+                            <option value="always">Always</option>
+                        </select>
+                        <span class="dnd-ui-hint">How often to send the list of all available rooms to the AI. Has no effect while "Inject scene into chat" is off.</span>
+                    </div>
                 </div>
             </div>
 
@@ -182,8 +195,13 @@ jQuery(async () => {
         </div>
     `;
 
-    // Resolve relative to this module so UI installs under third-party/<repo>/ work.
-    const ASSETS_PATH = new URL("./assets/", import.meta.url).pathname;
+    const ASSETS_PATH = "/scripts/extensions/silly-map/assets/";
+    // Server plugin that lets "Install by ID" work when SillyTavern runs on a remote
+    // host (browser File System Access can't reach the server's disk there). Off by
+    // default on any given server — see checkInstallerPluginAvailability().
+    const INSTALLER_PLUGIN_STATUS_URL = "/api/plugins/silly-map-installer/status";
+    const INSTALLER_PLUGIN_INSTALL_URL = "/api/plugins/silly-map-installer/install";
+    let installerPluginAvailable = false;
 
     // --- ДАНІ РУШІЯ ---
     // Список folder-id встановлених локацій. Джерела:
@@ -203,6 +221,19 @@ jQuery(async () => {
     let selectedTokenId = null; // виділений токен для переміщення (mobile tap-to-move)
     let currentMouseGridX = null;
     let currentMouseGridY = null;
+
+    // --- ВІЗУАЛЬНІ ОВЕРРАЙДИ ДЛЯ АНІМАЦІЇ ТОКЕНІВ ---
+    // gameState завжди містить фінальну (логічну) позицію токена — анімація лише
+    // тимчасово підміняє те, ЩО МАЛЮЄТЬСЯ, не чіпаючи сам стан.
+    // tokenAnimState: tokenId -> { x?, y?, alpha? } — поки токен «в дорозі» або фейдиться.
+    let tokenAnimState = {};
+    // Токени, яких вже нема у gameState (щойно видалені), але вони ще доскачують
+    // fade-out: { id, name, avatar, locId, roomId, x, y, alpha }.
+    let fadingOutTokens = [];
+
+    // --- ФОРМАТ ВІДОБРАЖЕННЯ ЛОКАЦІЙ (сітка/список), per-browser ---
+    const LOCS_VIEW_MODE_KEY = "dnd_vtt_locs_view_mode";
+    let locsViewMode = localStorage.getItem(LOCS_VIEW_MODE_KEY) === "list" ? "list" : "grid";
 
     // --- НАЛАШТУВАННЯ EXTENSION ---
     const SETTINGS_KEY = "dnd_vtt_settings";
@@ -246,22 +277,116 @@ jQuery(async () => {
         return null;
     }
     function updateCurrentModelDisplay() {
-        const name = getCurrentModelName();
         const $el = $("#dnd-current-model-name");
-        if (name) {
-            $el.text(name).removeClass("unknown");
+        const $label = $("#dnd-current-model-box .dnd-current-model-label");
+        if (extSettings.aiModel) {
+            $label.text("Override active:");
+            $el.text(extSettings.aiModel).removeClass("unknown");
         } else {
-            $el.text("(unknown / text completion)").addClass("unknown");
+            $label.text("Active default model");
+            const name = getCurrentModelName();
+            if (name) {
+                $el.text(name).removeClass("unknown");
+            } else {
+                $el.text("(unknown / text completion)").addClass("unknown");
+            }
         }
     }
 
     // --- ІНІЦІАЛІЗАЦІЯ ФОРМИ НАЛАШТУВАНЬ ---
     // Викликається ПІСЛЯ вставки mapHtml у DOM (у setupLayout), бо інпути живуть всередині mapHtml.
+    // Показує, чи реально спрацює override-модель. Перевіряємо через secret_state
+    // (/api/secrets/read) — цей запит лише каже "ключ існує", не віддає значення,
+    // тому працює завжди, незалежно від allowKeysExposure в config.yaml.
+    // Якщо ключа немає — одразу пропонуємо поле, щоб зберегти його, не виходячи з панелі.
+    async function updateOverrideAvailability() {
+        const $status = $("#dnd-override-availability");
+        const $keyRow = $("#dnd-openrouter-key-row");
+        if (!extSettings.aiModel) { $status.hide(); $keyRow.hide(); return; }
+        $status.removeClass("dnd-hint-ok dnd-hint-warning").text("Checking OpenRouter key…").show();
+        try {
+            await readSecretState();
+            const hasKey = Boolean(secret_state[SECRET_KEYS.OPENROUTER]);
+            if (hasKey) {
+                $status.text("✓ OpenRouter key found on the server — override will be used.").removeClass("dnd-hint-warning").addClass("dnd-hint-ok");
+                $keyRow.hide();
+            } else {
+                $status.text("⚠ No OpenRouter API key saved yet — add one below, or the default model will be used instead.").removeClass("dnd-hint-ok").addClass("dnd-hint-warning");
+                $keyRow.show();
+            }
+        } catch (e) {
+            $status.text("⚠ Could not verify the OpenRouter key — the default model will be used if the override fails.").removeClass("dnd-hint-ok").addClass("dnd-hint-warning");
+        }
+    }
+
+    // Підказки моделей OpenRouter для поля "Model for AI Director" (через нативний <datalist>).
+    // Публічний ендпоінт, ключ не потрібен; вантажимо один раз за сесію.
+    let openRouterModelsLoaded = false;
+    async function loadOpenRouterModelSuggestions() {
+        if (openRouterModelsLoaded) return;
+        openRouterModelsLoaded = true;
+        try {
+            const res = await fetch("https://openrouter.ai/api/v1/models");
+            if (!res.ok) return;
+            const data = await res.json();
+            const ids = (data?.data || []).map(m => m.id).filter(Boolean).sort();
+            const $list = $("#dnd-openrouter-models-list");
+            $list.empty();
+            for (const id of ids) {
+                $list.append($("<option>").attr("value", id));
+            }
+        } catch (e) {
+            console.warn("[Silly Map] Could not load OpenRouter model suggestions:", e);
+            openRouterModelsLoaded = false; // дозволяємо повторну спробу пізніше
+        }
+    }
+
+    // Зберігає OpenRouter-ключ прямо тут, без переходу в основні налаштування ST.
+    // Використовує той самий writeSecret(), що й рідний UI SillyTavern — ключ іде
+    // напряму на сервер і ніколи не залишається в коді/стані розширення.
+    $(document).on("click", "#dnd-save-openrouter-key-btn", async () => {
+        const val = ($("#dnd-openrouter-key-input").val() || "").trim();
+        if (!val) { toast.warning("Enter an OpenRouter API key first"); return; }
+        const $btn = $("#dnd-save-openrouter-key-btn");
+        const orig = $btn.html();
+        $btn.prop("disabled", true).html(spinningIcon());
+        try {
+            const id = await writeSecret(SECRET_KEYS.OPENROUTER, val);
+            if (id) {
+                $("#dnd-openrouter-key-input").val("");
+                toast.success("OpenRouter key saved");
+                await updateOverrideAvailability();
+            } else {
+                toast.error("Failed to save the key");
+            }
+        } catch (err) {
+            console.error("[Silly Map] Failed to save OpenRouter key:", err);
+            toast.error("Failed to save the key");
+        } finally {
+            $btn.prop("disabled", false).html(orig);
+        }
+    });
+    $(document).on("keydown", "#dnd-openrouter-key-input", function(e) {
+        if (e.key === "Enter") { e.preventDefault(); $("#dnd-save-openrouter-key-btn").trigger("click"); }
+        e.stopPropagation();
+    });
+
+    // "Inject rooms list" не має ефекту, поки вимкнено "Inject scene into chat" —
+    // відображаємо це візуально, а не мовчки ігноруємо вибір користувача.
+    function updateRoomsInjectAvailability() {
+        const enabled = extSettings.injectSceneContext !== false;
+        $("#dnd-inject-rooms-group").toggleClass("dnd-ui-group-disabled", !enabled);
+        $("#dnd-inject-rooms-select").prop("disabled", !enabled);
+    }
+
     function initSettingsForm() {
         $("#dnd-ai-model-input").val(extSettings.aiModel || "");
         // За замовчуванням інжект увімкнено (true), якщо явно не вимкнено (false).
         $("#dnd-inject-scene-toggle").prop("checked", extSettings.injectSceneContext !== false);
+        $("#dnd-inject-rooms-select").val(extSettings.injectRoomsMode || "always");
         updateCurrentModelDisplay();
+        updateRoomsInjectAvailability();
+        updateOverrideAvailability();
     }
     updateCurrentModelDisplay();
 
@@ -275,6 +400,7 @@ jQuery(async () => {
         else delete extSettings.aiModel;
         persistSettings();
         updateCurrentModelDisplay();
+        updateOverrideAvailability();
         const $btn = $("#dnd-save-settings-btn");
         const orig = $btn.html();
         $btn.html(`${ICONS.check} Saved`);
@@ -287,13 +413,22 @@ jQuery(async () => {
         $("#dnd-ai-model-input").val("");
         persistSettings();
         updateCurrentModelDisplay();
+        updateOverrideAvailability();
         toast.info("Reset to default SillyTavern model");
     });
 
     $(document).on("change", "#dnd-inject-scene-toggle", () => {
         extSettings.injectSceneContext = $("#dnd-inject-scene-toggle").prop("checked");
         persistSettings();
+        updateRoomsInjectAvailability();
         toast.info(extSettings.injectSceneContext ? "Scene injection enabled" : "Scene injection disabled");
+    });
+
+    const INJECT_ROOMS_LABELS = { never: "Never", once: "Once (on activation)", always: "Always" };
+    $(document).on("change", "#dnd-inject-rooms-select", () => {
+        extSettings.injectRoomsMode = $("#dnd-inject-rooms-select").val();
+        persistSettings();
+        toast.info(`Inject rooms list: ${INJECT_ROOMS_LABELS[extSettings.injectRoomsMode] || extSettings.injectRoomsMode}`);
     });
 
     // =========================================================
@@ -314,6 +449,13 @@ jQuery(async () => {
                 $("#dnd-token-auto-select").trigger("change");
             }
             renderActiveTokensList();
+        }
+        if (name === "settings") {
+            // Перевіряємо доступність OpenRouter-ключа щоразу при відкритті панелі —
+            // користувач міг додати/прибрати ключ у Secrets ST, поки панель була закрита.
+            updateOverrideAvailability();
+            updateRoomsInjectAvailability();
+            loadOpenRouterModelSuggestions();
         }
     }
     function closePanel() {
@@ -365,29 +507,36 @@ jQuery(async () => {
             const modelOverride = extSettings.aiModel;
 
             if (modelOverride) {
-                // Пряий виклик до OpenRouter з окремою моделлю (тільки override)
-                const apiKey = await findSecret(SECRET_KEYS.OPENROUTER);
-                if (!apiKey) {
-                    console.warn("[Silly Map AI] No OpenRouter API key; fallback to the standard model");
-                } else {
-                    try {
-                        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                            method: "POST",
-                            headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                model: modelOverride,
-                                messages: [{ role: "user", content: prompt }],
-                                temperature: 0.3,
-                                max_tokens: 500
-                            })
-                        });
-                        const data = await res.json();
-                        const content = data?.choices?.[0]?.message?.content || "";
-                        console.log(`[Silly Map AI] OpenRouter (${modelOverride}) Response:\n`, content);
-                        return content;
-                    } catch (err) {
-                        console.warn("[Silly Map AI] OpenRouter direct call failed, fallback:", err);
+                // Проксуємо через власний сервер SillyTavern (chat_completion_source: "openrouter"),
+                // так само як робить ядро ST для звичайного чату через OpenRouter. Ключ OpenRouter
+                // ніколи не потрапляє в браузер — сервер бере його зі своїх Secrets самостійно
+                // (readSecret на бекенді), тому НЕ потрібен allowKeysExposure в config.yaml і не
+                // важливо, який бекенд зараз обрано основним у SillyTavern.
+                try {
+                    const res = await fetch("/api/backends/chat-completions/generate", {
+                        method: "POST",
+                        headers: getRequestHeaders(),
+                        body: JSON.stringify({
+                            chat_completion_source: "openrouter",
+                            messages: [{ role: "user", content: prompt }],
+                            model: modelOverride,
+                            temperature: 0.3,
+                            max_tokens: 500,
+                            stream: false
+                        })
+                    });
+                    const data = await res.json();
+                    if (!res.ok || data?.error) {
+                        const msg = (data?.error && data.error.message)
+                            || (res.status === 400 ? "No OpenRouter API key saved on the server." : `HTTP ${res.status}`);
+                        throw new Error(msg);
                     }
+                    const content = data?.choices?.[0]?.message?.content || "";
+                    console.log(`[Silly Map AI] OpenRouter (${modelOverride}) Response:\n`, content);
+                    return content;
+                } catch (err) {
+                    console.warn("[Silly Map AI] OpenRouter override call failed, fallback:", err);
+                    toast.warning(`Override model "${modelOverride}" failed (${err.message}). Using the default model instead.`);
                 }
             }
 
@@ -513,7 +662,7 @@ jQuery(async () => {
 
     function getLocInfo(locId) {
         const layout = layoutCache[locId];
-        const fallbackBg = layout?.rooms ? Object.values(layout.rooms)[0]?.background : null;
+        const fallbackBg = layout?.rooms ? (getSortedRoomEntries(layout.rooms).map(e => e[1]))[0]?.background : null;
         return {
             id: locId,
             name: layout?.name || locId,
@@ -522,6 +671,22 @@ jQuery(async () => {
             preview: layout?.preview || fallbackBg,
             path: "locations/" + locId + "/",
         };
+    }
+
+    // =========================================================
+    // СОРТУВАННЯ КІМНАТ
+    // =========================================================
+    function getSortedRoomEntries(roomsObj) {
+        if (!roomsObj) return [];
+        return Object.entries(roomsObj).sort((a, b) => {
+            const orderA = a[1].order !== undefined ? a[1].order : 9999;
+            const orderB = b[1].order !== undefined ? b[1].order : 9999;
+            return orderA - orderB;
+        });
+    }
+
+    function getSortedRoomIds(roomsObj) {
+        return getSortedRoomEntries(roomsObj).map(e => e[0]);
     }
 
     // =========================================================
@@ -610,7 +775,27 @@ jQuery(async () => {
             const tokens = Object.values(locState.tokens || {});
             if (tokens.length === 0) continue;
 
-            for (const [roomId, roomData] of Object.entries(tLayout.rooms)) {
+            const mode = extSettings.injectRoomsMode || "always";
+            let shouldInjectRooms = false;
+            if (mode === "always") {
+                shouldInjectRooms = true;
+            } else if (mode === "once" && !locState.roomsAnnounced) {
+                shouldInjectRooms = true;
+                locState.roomsAnnounced = true;
+                saveState();
+            }
+
+            let roomsStr = "";
+            const locName = locInfo?.name || locId;
+            if (shouldInjectRooms && tLayout.rooms) {
+                const roomNames = (getSortedRoomEntries(tLayout.rooms).map(e => e[1])).map(r => r.name).filter(Boolean);
+                if (roomNames.length > 0) {
+                    roomsStr = `Available rooms at ${locName}: ${roomNames.join(", ")}\n\n`;
+                }
+            }
+
+            let isFirstRoomBlock = true;
+            for (const [roomId, roomData] of getSortedRoomEntries(tLayout.rooms)) {
                 const tokensInRoom = tokens.filter(t => t.roomId === roomId);
                 if (tokensInRoom.length === 0) continue;
 
@@ -626,13 +811,16 @@ jQuery(async () => {
                     .join(", ") || "(none)";
 
                 const charNames = tokensInRoom.map(t => t.name).join(", ");
-                const locName = locInfo?.name || locId;
                 const roomName = roomData.name || roomId;
-                blocks.push(
-                    `[${locName} / ${roomName}]\n` +
+                let blockStr = `[${locName} / ${roomName}]\n` +
                     `Characters present: ${charNames}\n` +
-                    `Items: ${itemsStr}`
-                );
+                    `Items: ${itemsStr}`;
+                
+                if (isFirstRoomBlock && roomsStr) {
+                    blockStr = roomsStr + blockStr;
+                    isFirstRoomBlock = false;
+                }
+                blocks.push(blockStr);
             }
         }
 
@@ -686,9 +874,121 @@ jQuery(async () => {
     }
 
     // =========================================================
+    // ПЛАВНЕ ПЕРЕМІЩЕННЯ ТОКЕНІВ: маршрут + анімація
+    // =========================================================
+    // getWalkableGrid() / findGridPath() винесені у ./pathfinding.js (імпорт вище) —
+    // це чисті функції без залежності від стану розширення.
+
+    // Чи зараз відкрита саме ця кімната — анімувати має сенс лише те, що реально видно.
+    function isViewingScene(locId, roomId) {
+        return gameState.viewingLocId === locId && gameState.viewingRoomId === roomId;
+    }
+
+    // Готує "move"-job з побудованим маршрутом, або null — якщо анімація недоречна
+    // (кімната зараз не на екрані, токен уже на місці, чи маршрут не знайдено). У всіх
+    // цих випадках токен просто миттєво опиняється у фінальній клітинці, без анімації —
+    // це вже сталося раніше (gameState оновлюється синхронно, до виклику цієї функції).
+    function buildMoveVisualJob(tokenId, locId, roomId, fromX, fromY, toX, toY, layout) {
+        if (!isViewingScene(locId, roomId)) return null;
+        if (fromX === toX && fromY === toY) return null;
+        const blocked = getWalkableGrid(layout, roomId);
+        if (!blocked) return null;
+        const path = findGridPath(blocked, fromX, fromY, toX, toY);
+        if (!path || path.length === 0) return null;
+        return { type: "move", tokenId, fromX, fromY, path };
+    }
+
+    const TOKEN_MOVE_MS_PER_CELL = 140; // швидкість ходьби по маршруту
+    const TOKEN_FADE_MS = 320; // тривалість fade-in/fade-out
+
+    // Проста rAF-анімація значення 0..1 з викликом onFrame на кожному кадрі.
+    function animateTween(durationMs, onFrame) {
+        return new Promise((resolve) => {
+            const start = performance.now();
+            function step(now) {
+                const t = Math.min(1, (now - start) / durationMs);
+                onFrame(t);
+                if (t < 1) requestAnimationFrame(step);
+                else resolve();
+            }
+            requestAnimationFrame(step);
+        });
+    }
+
+    // Веде токен по маршруту клітинка за клітинкою (gameState вже має фінальну позицію —
+    // тут анімується лише те, що малюється, через tokenAnimState).
+    async function animateTokenPath(tokenId, fromX, fromY, path) {
+        let curX = fromX, curY = fromY;
+        for (const step of path) {
+            const sx = curX, sy = curY, ex = step.x, ey = step.y;
+            await animateTween(TOKEN_MOVE_MS_PER_CELL, (t) => {
+                tokenAnimState[tokenId] = { x: sx + (ex - sx) * t, y: sy + (ey - sy) * t };
+                renderCanvas();
+            });
+            curX = ex; curY = ey;
+        }
+        delete tokenAnimState[tokenId];
+        renderCanvas();
+    }
+
+    // Плавна поява щойно доданого токена (він вже в gameState — просто фейдимо alpha).
+    async function animateTokenFadeIn(tokenId) {
+        await animateTween(TOKEN_FADE_MS, (t) => {
+            tokenAnimState[tokenId] = { alpha: t };
+            renderCanvas();
+        });
+        delete tokenAnimState[tokenId];
+        renderCanvas();
+    }
+
+    // Плавне зникнення токена, який вже видалений з gameState — малюється окремо
+    // через fadingOutTokens, поки не згасне. `entry` має бути вже доданий у той масив.
+    async function animateTokenFadeOut(entry) {
+        await animateTween(TOKEN_FADE_MS, (t) => {
+            entry.alpha = 1 - t;
+            renderCanvas();
+        });
+        const idx = fadingOutTokens.indexOf(entry);
+        if (idx !== -1) fadingOutTokens.splice(idx, 1);
+        renderCanvas();
+    }
+
+    // Програє чергу візуальних job'ів ПО ЧЕРЗІ (кожен токен рухається/фейдиться
+    // окремо, а не всі одночасно) — job.type: "move" | "add" | "remove".
+    async function playVisualJobsSequentially(jobs) {
+        for (const job of jobs) {
+            try {
+                if (job.type === "move") {
+                    await animateTokenPath(job.tokenId, job.fromX, job.fromY, job.path);
+                } else if (job.type === "add") {
+                    await animateTokenFadeIn(job.tokenId);
+                } else if (job.type === "remove") {
+                    await animateTokenFadeOut(job.entry);
+                }
+            } catch (err) {
+                console.warn("[Silly Map] Visual job failed:", job, err);
+            }
+        }
+    }
+
+    // =========================================================
     // ГРИД ЛОКАЦІЙ + ПОШУК
     // =========================================================
+    function updateLocsViewToggleBtn() {
+        const isList = locsViewMode === "list";
+        $("#dnd-locs-view-toggle")
+            .html(isList ? ICONS.grid : ICONS.list)
+            .attr("title", isList ? "Switch to grid view" : "Switch to list view");
+        $("#dnd-locs-grid").toggleClass("list-view", isList);
+    }
+    $(document).on("click", "#dnd-locs-view-toggle", function() {
+        locsViewMode = locsViewMode === "list" ? "grid" : "list";
+        localStorage.setItem(LOCS_VIEW_MODE_KEY, locsViewMode);
+        updateLocsViewToggleBtn();
+    });
+
     function renderLocationsGrid() {
+        updateLocsViewToggleBtn();
         if (installedLocIds.length === 0) return;
         const $grid = $("#dnd-locs-grid");
         $grid.empty();
@@ -715,11 +1015,17 @@ jQuery(async () => {
                 : "";
             const isActive = activeIds.includes(loc.id);
             const tagsStr = (loc.tags || []).join(", ");
+            
+            const layout = layoutCache[loc.id];
+            const roomCount = layout && layout.rooms ? Object.keys(layout.rooms).length : 0;
+            const roomsStr = roomCount === 1 ? "1 room" : `${roomCount} rooms`;
+
             const card = $(`
                 <div class="dnd-loc-card ${isActive ? "active" : ""}" data-id="${loc.id}">
                     ${previewPath ? `<img class="dnd-loc-card-img" src="${previewPath}" alt="${escapeHtml(loc.name)}" loading="lazy">` : ''}
                     <div class="dnd-loc-card-info">
                         <div class="dnd-loc-card-name">${escapeHtml(loc.name)}</div>
+                        <div class="dnd-loc-card-rooms">${roomsStr}</div>
                         ${tagsStr ? `<div class="dnd-loc-card-tags">${escapeHtml(tagsStr)}</div>` : ""}
                     </div>
                     <div class="dnd-loc-card-status">Active</div>
@@ -756,6 +1062,24 @@ jQuery(async () => {
         e.stopPropagation();
     });
 
+    // Shared by "+ Add location" (folder already on disk) and "Install by ID" (server
+    // plugin just wrote the folder) — both end the same way: verify layout.json,
+    // register the id, refresh the grid. Bypasses layoutCache so a just-(re)installed
+    // location is never masked by a stale in-memory copy from an earlier attempt.
+    async function registerInstalledLocation(folder) {
+        delete layoutCache[folder];
+        const layout = await getLayout(folder);
+        if (!layout || !layout.rooms || typeof layout.rooms !== "object") {
+            throw new Error(`layout.json not found or invalid in assets/locations/${folder}/`);
+        }
+        if (!installedLocIds.includes(folder)) {
+            installedLocIds.push(folder);
+            persistInstalledLocIds();
+        }
+        renderLocationsGrid();
+        return getLocInfo(folder);
+    }
+
     async function addLocationFromInput() {
         const folder = ($("#dnd-add-loc-input").val() || "").trim();
         if (!folder) { toast.warning("Enter the location folder name"); return; }
@@ -770,24 +1094,84 @@ jQuery(async () => {
         }
         const $confirm = $("#dnd-add-loc-confirm");
         const orig = $confirm.html();
-        $confirm.prop("disabled", true).html(ICONS.refresh);
+        $confirm.prop("disabled", true).html(spinningIcon());
         try {
-            const layout = await getLayout(folder);
-            if (!layout || !layout.rooms || typeof layout.rooms !== "object") {
-                toast.error(`layout.json not found or invalid in assets/locations/${folder}/`);
-                return;
-            }
-            installedLocIds.push(folder);
-            persistInstalledLocIds();
-            renderLocationsGrid();
+            const meta = await registerInstalledLocation(folder);
             hideAddLocInline();
-            const meta = getLocInfo(folder);
             toast.success(`Location added: ${meta.name}`);
         } catch (err) {
             console.error("[Silly Map] addLocationFromInput error:", err);
-            toast.error("Failed to add location");
+            toast.error(err && err.message ? err.message : "Failed to add location");
         } finally {
             $confirm.prop("disabled", false).html(orig);
+        }
+    }
+
+    // =========================================================
+    // ВСТАНОВЛЕННЯ ЛОКАЦІЇ ЗА ID ЧЕРЕЗ СЕРВЕРНИЙ ПЛАГІН
+    // Для випадків, коли ST стоїть на віддаленому сервері — браузерний File System
+    // Access API там не дістає до диска сервера. Кнопка з'являється лише якщо
+    // checkInstallerPluginAvailability() підтвердив, що плагін встановлений і
+    // увімкнений (enableServerPlugins: true в config.yaml) — інакше юзер бачить
+    // тільки "+ Add" і ZIP-спосіб на сайті, як і раніше.
+    // =========================================================
+    function showInstallIdInline() { hideAddLocInline(); $("#dnd-install-id-inline").show(); $("#dnd-install-by-id-btn").hide(); $("#dnd-install-id-input").val("").focus(); }
+    function hideInstallIdInline() { $("#dnd-install-id-inline").hide(); if (installerPluginAvailable) $("#dnd-install-by-id-btn").show(); }
+
+    $(document).on("click", "#dnd-install-by-id-btn", showInstallIdInline);
+    $(document).on("click", "#dnd-install-id-cancel", hideInstallIdInline);
+    $(document).on("click", "#dnd-install-id-confirm", installLocationById);
+    $(document).on("keydown", "#dnd-install-id-input", function(e) {
+        if (e.key === "Enter") { e.preventDefault(); installLocationById(); }
+        else if (e.key === "Escape") { hideInstallIdInline(); }
+        e.stopPropagation();
+    });
+
+    async function installLocationById() {
+        const id = ($("#dnd-install-id-input").val() || "").trim();
+        if (!id) { toast.warning("Paste the location ID"); return; }
+        if (!/^[A-Za-z0-9_\-]+$/.test(id)) {
+            toast.error("Location ID may only contain letters, numbers, _ and -");
+            return;
+        }
+        const $confirm = $("#dnd-install-id-confirm");
+        const orig = $confirm.html();
+        $confirm.prop("disabled", true).html(spinningIcon());
+        try {
+            const res = await fetch(INSTALLER_PLUGIN_INSTALL_URL, {
+                method: "POST",
+                headers: getRequestHeaders(),
+                body: JSON.stringify({ id }),
+            });
+            const data = await res.json().catch(() => null);
+            if (!res.ok || !data || !data.ok) {
+                throw new Error((data && data.error) || `Server install failed (HTTP ${res.status})`);
+            }
+            const meta = await registerInstalledLocation(id);
+            hideInstallIdInline();
+            toast.success(`Installed from server: ${meta.name}`);
+        } catch (err) {
+            console.error("[Silly Map] installLocationById error:", err);
+            toast.error(err && err.message ? err.message : "Server install failed");
+        } finally {
+            $confirm.prop("disabled", false).html(orig);
+        }
+    }
+
+    /** One-time check at startup — lights up "Install by ID" only if the companion
+     * server plugin actually responds. Silent no-op otherwise (most servers won't
+     * have it, and that's fine — ZIP/manual and the browser installer still work). */
+    async function checkInstallerPluginAvailability() {
+        try {
+            const res = await fetch(INSTALLER_PLUGIN_STATUS_URL, { headers: getRequestHeaders() });
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data && data.ok) {
+                installerPluginAvailable = true;
+                $("#dnd-install-by-id-btn").show();
+            }
+        } catch (err) {
+            // Plugin not installed/enabled on this server — button stays hidden.
         }
     }
 
@@ -835,13 +1219,23 @@ jQuery(async () => {
                     <button class="dnd-token-remove-btn" data-id="${t.id}" title="Delete">${ICONS.trash}</button>
                 </div>
             `);
-            item.find(".dnd-token-remove-btn").on("click", function() {
+            item.find(".dnd-token-remove-btn").on("click", async function() {
                 const removedId = $(this).data("id");
-                delete gameState.activeLocations[gameState.viewingLocId].tokens[removedId];
+                const locId = gameState.viewingLocId;
+                const removedToken = gameState.activeLocations[locId]?.tokens?.[removedId];
+                delete gameState.activeLocations[locId].tokens[removedId];
                 if (selectedTokenId === removedId) selectedTokenId = null;
                 saveState();
                 renderActiveTokensList();
-                renderCanvas();
+                if (removedToken) {
+                    // Токен зникає з мапи — плавний fade-out замість миттєвого зникнення.
+                    const entry = { id: removedToken.id, name: removedToken.name, avatar: removedToken.avatar, locId, roomId: removedToken.roomId, x: removedToken.x, y: removedToken.y, alpha: 1 };
+                    fadingOutTokens.push(entry);
+                    renderCanvas();
+                    await animateTokenFadeOut(entry);
+                } else {
+                    renderCanvas();
+                }
             });
             item.find(".dnd-token-list-avatar-wrap").on("click", function() {
                 openAvatarMenu($(this).data("id"), $(this));
@@ -1412,6 +1806,18 @@ jQuery(async () => {
     const TAP_MOVE_THRESHOLD = 10; // px — нижче цього вважаємо жест тапом, а не перетягуванням/панорамою
 
     function pointerMove(e) {
+        // ── Режим розміщення токену: оновлюємо позицію курсора навіть без натиснутої кнопки ──
+        // На ПК pointermove генерується без натиснутої кнопки (e.buttons === 0), але pointers
+        // заповнюється лише у pointerDown — тому без цього блоку currentMouseGridX завжди null
+        // і прев'ю токену / кастомний курсор не відображаються до першого кліку.
+        if (placingToken && !pointers.has(e.pointerId)) {
+            const c = clientToCanvas(e.clientX, e.clientY);
+            currentMouseGridX = c.x;
+            currentMouseGridY = c.y;
+            renderCanvas();
+            return;
+        }
+
         if (!pointers.has(e.pointerId)) return;
         pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
@@ -1537,14 +1943,18 @@ jQuery(async () => {
                         placingToken.y = gridY;
                         const loc = gameState.activeLocations[gameState.viewingLocId];
                         if (!loc.tokens) loc.tokens = {};
-                        loc.tokens[placingToken.id] = placingToken;
+                        const newTokenId = placingToken.id;
+                        loc.tokens[newTokenId] = placingToken;
                         saveState();
                         placingToken = null;
                         $("#dnd-cancel-place-btn").hide();
                         $("#dnd-map-canvas").css("cursor", "");
                         renderActiveTokensList();
                         openPanel("tokens");
+                        // Токен щойно з'явився на мапі — плавний fade-in замість миттєвої появи.
+                        tokenAnimState[newTokenId] = { alpha: 0 };
                         renderCanvas();
+                        await animateTokenFadeIn(newTokenId);
                     } else {
                         toast.warning("This cell is already occupied!");
                     }
@@ -1616,12 +2026,22 @@ jQuery(async () => {
                 renderCanvas();
                 return;
             }
+            const fromX = token.x, fromY = token.y;
+            const tokenId = token.id;
             token.x = gridX;
             token.y = gridY;
             saveState();
             selectedTokenId = null;
             renderActiveTokensList();
-            renderCanvas();
+            // Той самий маршрут+анімація, що й для переміщень від AI Director.
+            const moveJob = buildMoveVisualJob(tokenId, gameState.viewingLocId, gameState.viewingRoomId, fromX, fromY, gridX, gridY, layout);
+            if (moveJob) {
+                tokenAnimState[tokenId] = { x: fromX, y: fromY };
+                renderCanvas();
+                await animateTokenPath(tokenId, fromX, fromY, moveJob.path);
+            } else {
+                renderCanvas();
+            }
         } else {
             toast.warning("This cell is not available for movement!");
             // Виділення залишаємо, щоб юзер міг обрати іншу клітинку
@@ -1669,7 +2089,7 @@ jQuery(async () => {
         if (installedLocIds.length === 0) return;
         const $btn = $(this);
         const orig = $btn.html();
-        $btn.prop("disabled", true).html(`${ICONS.refresh} Thinking...`);
+        $btn.prop("disabled", true).html(`${spinningIcon()} Thinking...`);
         const context = getRecentChatContext(5);
         const locsData = installedLocIds.map(id => {
             const l = getLocInfo(id);
@@ -1709,6 +2129,21 @@ Output ONLY the exact ID of the chosen location, nothing else.`;
     // =========================================================
     // AI DIRECTOR — оновлення позицій
     // =========================================================
+    $(document).on("click", "#dnd-ai-quickbar-btn", function() {
+        const $quick = $(this);
+        const $real = $("#dnd-ai-update-scene-btn");
+        if ($quick.prop("disabled") || $real.prop("disabled")) return;
+        const origQuick = $quick.html();
+        $quick.prop("disabled", true).html(spinningIcon());
+        $real.trigger("click");
+        const poll = setInterval(() => {
+            if (!$real.prop("disabled")) {
+                clearInterval(poll);
+                $quick.prop("disabled", false).html(origQuick);
+            }
+        }, 250);
+    });
+
     $(document).on("click", "#dnd-ai-update-scene-btn", async function() {
         if (!gameState.viewingLocId || !gameState.viewingRoomId) {
             toast.warning("Please select a location and room first.");
@@ -1722,7 +2157,7 @@ Output ONLY the exact ID of the chosen location, nothing else.`;
 
         const $btn = $(this);
         const orig = $btn.html();
-        $btn.prop("disabled", true).html(`${ICONS.refresh} Думаю...`);
+        $btn.prop("disabled", true).html(`${spinningIcon()} Thinking...`);
 
         const context = getRecentChatContext(5);
         const activeLocationsBlock = await (async () => {
@@ -1734,7 +2169,7 @@ Output ONLY the exact ID of the chosen location, nothing else.`;
                 const isViewingLoc = locId === gameState.viewingLocId;
                 const header = `--- Location: ${locId} (${locInfo?.name || locId})${isViewingLoc ? " [VIEWING]" : ""} ---`;
                 const roomLines = [];
-                for (const [rid, r] of Object.entries(tLayout.rooms)) {
+                for (const [rid, r] of getSortedRoomEntries(tLayout.rooms)) {
                     const isViewingRoom = isViewingLoc && rid === gameState.viewingRoomId;
                     const furnitureStr = (r.furniture || []).length
                         ? (r.furniture || []).map(f => `        - ${f.type} (x:${f.x}, y:${f.y}, w:${f.w}, h:${f.h}, occupiable: ${f.occupiable})`).join("\n")
@@ -1823,6 +2258,10 @@ Example of expected JSON output:
             }
 
             let movedCount = 0, addedCount = 0, removedCount = 0;
+            // Візуальні job'и (маршрути/fade), які програються ПІСЛЯ того, як стан уже
+            // застосовано — по черзі, одним токеном за раз. Логіка розміщення/колізій
+            // вище лишається повністю незмінною; це суто накладка для рендеру.
+            const visualJobs = [];
 
             for (const act of actions) {
                 try {
@@ -1837,7 +2276,7 @@ Example of expected JSON output:
 
                         const tLayout = await getLayout(targetLocId);
                         if (!tLayout) continue;
-                        const tRoomId = act.roomId || Object.keys(tLayout.rooms)[0];
+                        const tRoomId = act.roomId || getSortedRoomIds(tLayout.rooms)[0];
                         const tGrid = getOccupancyGrid(tLayout, tRoomId);
 
                         const tId = generateTokenId();
@@ -1857,6 +2296,10 @@ Example of expected JSON output:
                         tLocState.lastInteractionAt = Date.now();
                         addedCount++;
                         toast.success(`${act.name || "NPC"} appeared in the scene`);
+                        if (isViewingScene(targetLocId, tRoomId)) {
+                            tokenAnimState[tId] = { alpha: 0 }; // з'явиться прозорим, фейд — під час playback
+                            visualJobs.push({ type: "add", tokenId: tId });
+                        }
                     } else if (act.action === "move" && act.id) {
                         const found = findTokenInActiveLocations(act.id);
                         if (!found) continue;
@@ -1872,7 +2315,8 @@ Example of expected JSON output:
                         const targetLayout = await getLayout(targetLocId);
                         if (!targetLayout) continue;
 
-                        const targetRoomId = act.roomId || token.roomId || Object.keys(targetLayout.rooms)[0];
+                        const targetRoomId = act.roomId || token.roomId || getSortedRoomIds(targetLayout.rooms)[0];
+                        const fromRoomId = token.roomId;
                         let finalX = act.x !== undefined ? act.x : token.x;
                         let finalY = act.y !== undefined ? act.y : token.y;
 
@@ -1885,7 +2329,9 @@ Example of expected JSON output:
                             delete sourceLocState.tokens[token.id];
                             targetLocState.lastInteractionAt = Date.now();
                             movedCount++;
+                            // Інша локація — інша мапа, спільного маршруту немає. Переносимо миттєво.
                         } else {
+                            const fromX = token.x, fromY = token.y;
                             // ВАЖЛИВО: будуємо грид БЕЗ поточного токену, щоб він міг стояти на власній клітинці
                             const tGrid = getOccupancyGrid(targetLayout, targetRoomId);
                             tGrid[token.y][token.x] = false; // звільняємо власну клітинку
@@ -1899,15 +2345,31 @@ Example of expected JSON output:
                             token.roomId = targetRoomId;
                             targetLocState.lastInteractionAt = Date.now();
                             movedCount++;
+                            // Анімуємо маршрутом лише переміщення в межах ОДНІЄЇ кімнати, яку
+                            // зараз видно. Інакше (інша кімната / шлях не знайдено) — токен
+                            // вже стоїть у фінальній клітинці миттєво, як і раніше.
+                            if (fromRoomId === targetRoomId) {
+                                const moveJob = buildMoveVisualJob(token.id, targetLocId, targetRoomId, fromX, fromY, token.x, token.y, targetLayout);
+                                if (moveJob) {
+                                    tokenAnimState[token.id] = { x: fromX, y: fromY };
+                                    visualJobs.push(moveJob);
+                                }
+                            }
                         }
                     } else if (act.action === "remove" && act.id) {
                         const found = findTokenInActiveLocations(act.id);
                         if (found) {
-                            const { locState: lstate, token } = found;
+                            const { locId: fLocId, locState: lstate, token } = found;
+                            const wasViewing = isViewingScene(fLocId, token.roomId);
                             delete lstate.tokens[token.id];
                             lstate.lastInteractionAt = Date.now();
                             removedCount++;
                             toast.warning(`${token.name} left the scene`);
+                            if (wasViewing) {
+                                const entry = { id: token.id, name: token.name, avatar: token.avatar, locId: fLocId, roomId: token.roomId, x: token.x, y: token.y, alpha: 1 };
+                                fadingOutTokens.push(entry);
+                                visualJobs.push({ type: "remove", entry });
+                            }
                         }
                     }
                 } catch (err) {
@@ -1915,10 +2377,14 @@ Example of expected JSON output:
                 }
             }
             saveState();
-            renderCanvas();
             renderActiveTokensList();
             renderLocationsGrid();
             toast.info(`Added: ${addedCount}, Moved: ${movedCount}, Removed: ${removedCount}`);
+            // Одразу показуємо всі миттєві зміни та "заморожені" стартові кадри анімацій
+            // (без цього був би видимий стрибок: спочатку фінальна позиція, потім рух назад).
+            renderCanvas();
+            // Токени рухаються/з'являються/зникають ПО ЧЕРЗІ, а не всі одночасно.
+            await playVisualJobsSequentially(visualJobs);
         } catch (err) {
             console.error("[Silly Map AI] API Error:", err);
             toast.error("AI generation error.");
@@ -1931,6 +2397,10 @@ Example of expected JSON output:
     // МАЛЮВАННЯ МАПИ
     // =========================================================
     async function renderCanvas() {
+        // Single choke point for viewingLocId/viewingRoomId changes (room nav, drawer tile
+        // clicks, switchViewingScene, deactivation) — cheaper than adding this call at every
+        // one of those sites individually, and renderCanvas() is always called right after.
+        updateCollapseBtnVisibility();
         const canvas = document.getElementById("dnd-map-canvas");
         const ctx = canvas.getContext("2d");
 
@@ -1965,7 +2435,7 @@ Example of expected JSON output:
         }
         for (let y = 0; y <= canvas.height; y += cellH) {
             ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-        }``
+        }
 
         // Меблі
         if (Array.isArray(roomData.furniture)) {
@@ -2073,12 +2543,19 @@ Example of expected JSON output:
             const tokens = Object.values(locState.tokens).filter(t => t.roomId === gameState.viewingRoomId);
             for (const t of tokens) {
                 if (t.id === draggedTokenId) continue;
-                await drawSingleToken(t, t.x * cellW, t.y * cellH, 1.0);
+                // Поки токен рухається/фейдиться, малюємо його з візуального оверрайду
+                // (tokenAnimState), а не з "сирих" координат стану — сам gameState вже
+                // містить фінальну позицію, анімується лише картинка.
+                const anim = tokenAnimState[t.id];
+                const drawX = anim && anim.x !== undefined ? anim.x : t.x;
+                const drawY = anim && anim.y !== undefined ? anim.y : t.y;
+                const drawAlpha = anim && anim.alpha !== undefined ? anim.alpha : 1.0;
+                await drawSingleToken(t, drawX * cellW, drawY * cellH, drawAlpha);
                 // Кільце виділення навколо виділеного токену (для переміщення)
                 if (t.id === selectedTokenId) {
                     ctx.save();
-                    const cx = t.x * cellW + cellW / 2;
-                    const cy = t.y * cellH + cellH / 2;
+                    const cx = drawX * cellW + cellW / 2;
+                    const cy = drawY * cellH + cellH / 2;
                     const radius = Math.min(cellW, cellH) / 2.5 + 5;
                     ctx.strokeStyle = "#f1c40f";
                     ctx.lineWidth = 4;
@@ -2088,6 +2565,11 @@ Example of expected JSON output:
                     ctx.stroke();
                     ctx.restore();
                 }
+            }
+            // Токени, що вже видалені з gameState, але ще доскачують fade-out.
+            for (const ft of fadingOutTokens) {
+                if (ft.locId !== gameState.viewingLocId || ft.roomId !== gameState.viewingRoomId) continue;
+                await drawSingleToken(ft, ft.x * cellW, ft.y * cellH, ft.alpha);
             }
             if (draggedTokenId && currentMouseGridX !== null) {
                 const t = locState.tokens[draggedTokenId];
@@ -2144,7 +2626,7 @@ Example of expected JSON output:
             $("#dnd-room-prev, #dnd-room-next").prop("disabled", true);
             return;
         }
-        const roomIds = Object.keys(layout.rooms);
+        const roomIds = getSortedRoomIds(layout.rooms);
         const idx = roomIds.indexOf(gameState.viewingRoomId);
         $("#dnd-room-prev").prop("disabled", idx <= 0);
         $("#dnd-room-next").prop("disabled", idx < 0 || idx >= roomIds.length - 1);
@@ -2153,7 +2635,7 @@ Example of expected JSON output:
     $(document).on("click", "#dnd-room-prev", async () => {
         const layout = layoutCache[gameState.viewingLocId];
         if (!layout) return;
-        const roomIds = Object.keys(layout.rooms);
+        const roomIds = getSortedRoomIds(layout.rooms);
         const idx = roomIds.indexOf(gameState.viewingRoomId);
         if (idx <= 0) return;
         gameState.viewingRoomId = roomIds[idx - 1];
@@ -2165,7 +2647,7 @@ Example of expected JSON output:
     $(document).on("click", "#dnd-room-next", async () => {
         const layout = layoutCache[gameState.viewingLocId];
         if (!layout) return;
-        const roomIds = Object.keys(layout.rooms);
+        const roomIds = getSortedRoomIds(layout.rooms);
         const idx = roomIds.indexOf(gameState.viewingRoomId);
         if (idx < 0 || idx >= roomIds.length - 1) return;
         gameState.viewingRoomId = roomIds[idx + 1];
@@ -2211,7 +2693,7 @@ Example of expected JSON output:
             const layout = await getLayout(locId);
             if (!layout) continue;
             const locInfo = getLocInfo(locId);
-            const currentRoomId = (locId === gameState.viewingLocId && gameState.viewingRoomId) || Object.keys(layout.rooms)[0];
+            const currentRoomId = (locId === gameState.viewingLocId && gameState.viewingRoomId) || getSortedRoomIds(layout.rooms)[0];
             const roomData = layout.rooms[currentRoomId];
             const imgPath = ASSETS_PATH + locInfo.path + roomData.background;
             const tile = $(`
@@ -2270,7 +2752,7 @@ Example of expected JSON output:
         });
         $tiles.append(backTile);
 
-        for (const [roomId, roomData] of Object.entries(layout.rooms)) {
+        for (const [roomId, roomData] of getSortedRoomEntries(layout.rooms)) {
             const imgPath = ASSETS_PATH + locInfo.path + roomData.background;
             const isActive = locId === gameState.viewingLocId && roomId === gameState.viewingRoomId;
             const tile = $(`
@@ -2295,7 +2777,7 @@ Example of expected JSON output:
         const layout = await getLayout(locId);
         if (!layout) return;
         gameState.viewingLocId = locId;
-        gameState.viewingRoomId = Object.keys(layout.rooms)[0];
+        gameState.viewingRoomId = getSortedRoomIds(layout.rooms)[0];
         saveState();
         drawerView = options.drillDown
             ? { level: "rooms", locId }
@@ -2314,6 +2796,7 @@ Example of expected JSON output:
         await loadInstalledLocations();
         saveMapOpenState(currentChatId, true);
         $("#dnd-app-layout").addClass("dnd-map-open");
+        $("#dnd-map-collapse-btn").html(ICONS.close).attr("title", "Close map");
         updateCollapseBtnVisibility();
 
         drawerView = gameState.viewingLocId
@@ -2333,6 +2816,7 @@ Example of expected JSON output:
         isMapVisible = false;
         saveMapOpenState(currentChatId, false);
         $("#dnd-app-layout").removeClass("dnd-map-open");
+        $("#dnd-map-collapse-btn").html(ICONS.map).attr("title", "Open map");
         closePanel();
         updateCollapseBtnVisibility();
     }
@@ -2342,6 +2826,7 @@ Example of expected JSON output:
     function updateCollapseBtnVisibility() {
         const hasChat = Boolean(currentChatId);
         $("#dnd-map-collapse-btn").toggle(hasChat);
+        $("#dnd-ai-quickbar-btn").toggle(hasChat && Boolean(gameState.viewingLocId && gameState.viewingRoomId));
     }
 
     $(document).on("click", "#dnd-map-collapse-btn", async () => {
@@ -2453,6 +2938,8 @@ Example of expected JSON output:
     // =========================================================
     isLayoutReady = setupLayout();
     updateCurrentModelDisplay();
+    checkInstallerPluginAvailability();
+    updateLocsViewToggleBtn();
 
     if (!isLayoutReady) {
         setTimeout(() => {

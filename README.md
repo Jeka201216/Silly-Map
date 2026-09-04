@@ -39,7 +39,7 @@ Once the extension is installed, you can populate it with custom maps and locati
 
 You can browse and download new environments from the **[Silly Map Marketplace](https://silly-map.nero-dev.online)**. 
 
-There are two ways to install maps from the marketplace:
+There are three ways to install maps from the marketplace:
 
 ### Method A: Direct Install (Recommended)
 If you are using a compatible browser (like Chrome, Edge, or Opera that supports the File System Access API):
@@ -47,8 +47,13 @@ If you are using a compatible browser (like Chrome, Edge, or Opera that supports
 2. Grant the browser permission to read/write to your local SillyTavern folder.
 3. The map files will be automatically placed in the correct directory.
 
-### Method B: Manual Fallback (ZIP)
-If direct installation is not supported by your browser:
+### Method B: Server Install (via Plugin)
+For SillyTavern running on a remote/hosted server, where Method A can't reach the server's disk directly:
+1. Install the [Silly Map Installer](https://github.com/Jeka201216/silly-map-installer) server plugin once — clone it into your SillyTavern's `plugins/` folder, set `enableServerPlugins: true` in `config.yaml`, and restart the server.
+2. After that, every install is one click: copy a location's ID from its page on the Marketplace, paste it into this extension's **"Install by ID"** field, and confirm. The extension asks your server's plugin to fetch and place the files — no manual file transfer needed.
+
+### Method C: Manual Fallback (ZIP)
+If neither of the above works for you (e.g. Firefox, Safari, mobile, or a server without the plugin):
 1. Click **Download ZIP** on the desired map page in the Marketplace.
 2. Extract the map folder.
 3. Place the extracted map folder into the appropriate Silly Map locations directory within your SillyTavern folder.

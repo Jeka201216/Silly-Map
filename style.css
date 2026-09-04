@@ -1,4 +1,37 @@
 /* =========================================================
+   SILLY MAP — Neo-VectorHeart Cyberpunk theme
+   Ported from the marketplace site's design system
+   (silly-map.nero-dev.online — see app/globals.css there)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --sm-bg: #050505;
+    --sm-surface: #121212;
+    --sm-surface-hover: #1a1a1a;
+    --sm-panel-rgb: 5, 5, 5;
+    --sm-border: #333333;
+    --sm-fg: #e0e0e0;
+    --sm-muted: rgba(224, 224, 224, 0.55);
+
+    --sm-primary: #00ff66;
+    --sm-primary-rgb: 0, 255, 102;
+    --sm-secondary: #ff0055;
+    --sm-secondary-rgb: 255, 0, 85;
+    --sm-accent: #00f0ff;
+    --sm-accent-rgb: 0, 240, 255;
+    --sm-warning: #f39c12;
+
+    --sm-font-sans: 'Orbitron', sans-serif;
+    --sm-font-mono: 'Share Tech Mono', monospace;
+}
+
+/* Angular cut corners instead of rounded ones — same idea as the site's clip-cut-* utilities */
+.sm-cut-tr { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
+.sm-cut-bl { clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+.sm-cut-both { clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+
+/* =========================================================
    ЗАГАЛЬНЕ
    ========================================================= */
 #dnd-app-layout {
@@ -14,16 +47,16 @@
     flex: 0 0 0;
     width: 0;
     height: 98vh;
-    background: #0a0a0c;
+    background: var(--sm-bg);
     overflow: hidden;
-    border-right: 0 solid #27ae60;
+    border-right: 0 solid var(--sm-primary);
     transition: flex-basis 0.3s ease, width 0.3s ease;
 }
 
 #dnd-app-layout.dnd-map-open #dnd-map-split-container {
     flex: 0 0 60vw;
     width: 60vw;
-    border-right: 3px solid #27ae60;
+    border-right: 3px solid var(--sm-primary);
 }
 
 #dnd-app-layout.dnd-map-open > #sheld {
@@ -47,7 +80,7 @@
     position: absolute;
     inset: 0;
     overflow: hidden;
-    background: #0a0a0c;
+    background: var(--sm-bg);
     touch-action: none; /* блокує браузерні жести (scroll/zoom) */
     z-index: 1;
 }
@@ -61,7 +94,7 @@
        що сітка/токени при zoom/pan не перемальовуються і не блимають. */
     transform-origin: 0 0;
     will-change: transform;
-    background: #0a0a0c;
+    background: var(--sm-bg);
 }
 
 /* Керування зумом */
@@ -79,10 +112,10 @@
     height: 38px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(20, 20, 25, 0.92);
+    background: rgba(var(--sm-panel-rgb), 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: #ecf0f1;
+    color: var(--sm-fg);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -91,8 +124,8 @@
     padding: 0;
 }
 #dnd-zoom-controls button:hover {
-    background: rgba(46, 204, 113, 0.3);
-    color: #fff;
+    background: rgba(var(--sm-primary-rgb), 0.3);
+    color: var(--sm-fg);
 }
 #dnd-zoom-controls button svg {
     width: 18px;
@@ -111,11 +144,11 @@
     gap: 6px;
     padding: 10px 18px;
     border-radius: 12px;
-    border: 1px solid rgba(231, 76, 60, 0.6);
-    background: rgba(231, 76, 60, 0.92);
+    border: 1px solid rgba(var(--sm-secondary-rgb), 0.6);
+    background: rgba(var(--sm-secondary-rgb), 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: #fff;
+    color: var(--sm-fg);
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -123,7 +156,7 @@
     transition: background 0.2s, transform 0.1s;
 }
 #dnd-cancel-place-btn:active {
-    background: rgba(192, 57, 43, 0.95);
+    background: rgba(var(--sm-secondary-rgb), 0.95);
     transform: translateX(-50%) scale(0.97);
 }
 #dnd-cancel-place-btn svg {
@@ -141,10 +174,10 @@
     height: 44px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50%;
-    background: rgba(20, 20, 25, 0.92);
+    background: rgba(var(--sm-panel-rgb), 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: #2ecc71;
+    color: var(--sm-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,17 +199,22 @@
     bottom: 20px;
 }
 #dnd-map-collapse-btn:hover {
-    background: rgba(39, 174, 96, 0.35);
-    color: white;
+    background: rgba(var(--sm-primary-rgb), 0.35);
+    color: var(--sm-fg);
 }
 #dnd-map-collapse-btn svg {
     width: 20px;
     height: 20px;
-    transition: transform 0.2s;
 }
-/* Стрілка вказує «відкрити мапу →» коли мапа закрита, «← назад до чату» коли відкрита */
-#dnd-app-layout.dnd-map-open #dnd-map-collapse-btn svg {
-    transform: rotate(180deg);
+/* Мапа відкрита — кнопка тепер закриває її, тож і колір, і іконка (X) інші,
+   щоб не виглядало як "оновити"/незрозуміла та сама кнопка. */
+#dnd-app-layout.dnd-map-open #dnd-map-collapse-btn {
+    color: var(--sm-secondary);
+    border-color: rgba(var(--sm-secondary-rgb), 0.4);
+}
+#dnd-app-layout.dnd-map-open #dnd-map-collapse-btn:hover {
+    background: rgba(var(--sm-secondary-rgb), 0.35);
+    color: var(--sm-fg);
 }
 
 /* =========================================================
@@ -190,7 +228,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    background: rgba(20, 20, 25, 0.92);
+    background: rgba(var(--sm-panel-rgb), 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -198,13 +236,14 @@
     padding: 8px;
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 }
-.dnd-tool-btn {
+.dnd-tool-btn, .dnd-tool-btn-action {
     width: 38px;
     height: 38px;
-    border-radius: 8px;
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
     border: none;
     background: transparent;
-    color: #bdc3c7;
+    color: var(--sm-muted);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -212,15 +251,26 @@
     transition: background 0.2s, color 0.2s, transform 0.15s;
     padding: 0;
 }
-.dnd-tool-btn:hover {
+.dnd-tool-btn:hover, .dnd-tool-btn-action:hover {
     background: rgba(255, 255, 255, 0.08);
-    color: #fff;
+    color: var(--sm-fg);
 }
 .dnd-tool-btn.active {
-    background: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
+    background: rgba(var(--sm-primary-rgb), 0.2);
+    color: var(--sm-primary);
 }
-.dnd-tool-btn svg {
+/* AI quickbar button — distinct accent so it reads as a shortcut, not a panel toggle */
+#dnd-ai-quickbar-btn {
+    color: var(--sm-accent);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 2px;
+    padding-top: 8px !important;
+}
+#dnd-ai-quickbar-btn:hover {
+    background: rgba(var(--sm-accent-rgb), 0.15);
+    color: var(--sm-accent);
+}
+.dnd-tool-btn svg, .dnd-tool-btn-action svg {
     width: 20px;
     height: 20px;
 }
@@ -230,13 +280,18 @@
    ========================================================= */
 .dnd-vtt-widget {
     position: absolute;
-    background: rgba(20, 20, 25, 0.92);
+    background: rgba(var(--sm-panel-rgb), 0.92);
+    background-image:
+        linear-gradient(rgba(var(--sm-primary-rgb), 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--sm-primary-rgb), 0.05) 1px, transparent 1px);
+    background-size: 22px 22px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: white;
-    font-family: sans-serif;
+    border-radius: 0;
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+    border: 1px solid var(--sm-border);
+    color: var(--sm-fg);
+    font-family: var(--sm-font-mono);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
     transition: 0.25s ease-in-out;
 }
@@ -253,11 +308,11 @@
     z-index: 14;
     display: flex;
     flex-direction: column;
-    background: rgba(20, 20, 25, 0.95);
+    background: rgba(var(--sm-panel-rgb), 0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+    border: 1px solid var(--sm-border);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
     overflow: hidden;
     display: none;
@@ -272,17 +327,32 @@
 }
 
 .dnd-panel-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--sm-border);
     flex: 0 0 auto;
 }
+.dnd-panel-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sm-primary) 50%, transparent);
+    opacity: 0.6;
+    pointer-events: none;
+}
 .dnd-panel-title {
-    font-size: 14px;
-    font-weight: bold;
-    color: #2ecc71;
+    font-family: var(--sm-font-sans);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sm-primary);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -299,7 +369,7 @@
 .dnd-panel-close {
     background: none;
     border: none;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     cursor: pointer;
     padding: 4px;
     border-radius: 6px;
@@ -308,7 +378,7 @@
     justify-content: center;
     transition: 0.2s;
 }
-.dnd-panel-close:hover { color: white; background: rgba(255, 255, 255, 0.08); }
+.dnd-panel-close:hover { color: var(--sm-fg); background: rgba(255, 255, 255, 0.08); }
 .dnd-panel-close svg { width: 16px; height: 16px; }
 
 .dnd-panel-body {
@@ -330,22 +400,23 @@
 }
 .dnd-ui-label {
     font-size: 11px;
-    color: #a1a1aa;
+    color: var(--sm-muted);
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 .dnd-ui-hint {
     font-size: 11px;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     line-height: 1.4;
 }
 .dnd-ui-select {
-    background: #2c3e50;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--sm-surface);
+    color: var(--sm-fg);
+    font-family: var(--sm-font-mono);
+    border: 1px solid var(--sm-border);
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 2px;
     font-size: 13px;
     outline: none;
     width: 100%;
@@ -353,59 +424,76 @@
     cursor: pointer;
 }
 .dnd-ui-btn {
-    background: #27ae60;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
+    background: transparent;
+    color: var(--sm-primary);
+    border: 2px solid var(--sm-primary);
+    padding: 9px 10px;
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
     cursor: pointer;
+    font-family: var(--sm-font-mono);
     font-weight: bold;
-    transition: background 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
     font-size: 12px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.06em;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     width: 100%;
     box-sizing: border-box;
+    box-shadow: 0 0 8px rgba(var(--sm-primary-rgb), 0.15);
 }
-.dnd-ui-btn:hover { background: #2ecc71; }
+.dnd-ui-btn:hover { background: var(--sm-primary); color: var(--sm-bg); box-shadow: 0 0 16px rgba(var(--sm-primary-rgb), 0.5); }
 .dnd-ui-btn:active { transform: scale(0.98); }
 .dnd-ui-btn:disabled {
-    background: #555;
+    background: transparent;
+    color: var(--sm-muted);
+    border-color: var(--sm-border);
+    box-shadow: none;
     cursor: not-allowed;
 }
 .dnd-ui-btn svg { width: 16px; height: 16px; }
 .dnd-ui-btn.dnd-btn-secondary {
-    background: #34495e;
+    background: transparent;
+    color: var(--sm-fg);
+    border-color: var(--sm-border);
+    box-shadow: none;
 }
-#dnd-site-link {
-    background: #27ae60 !important; 
-}
-#dnd-site-link {
-    background: #27ae60 !important; 
-}
-#dnd-site-link:hover {
-    background: #2ecc71 !important; 
-    color: white;
-}
-.dnd-ui-btn.dnd-btn-secondary:hover { background: #465a73; }
+.dnd-ui-btn.dnd-btn-secondary:hover { background: var(--sm-primary); color: var(--sm-bg); border-color: var(--sm-primary); box-shadow: 0 0 12px rgba(var(--sm-primary-rgb), 0.35); }
 .dnd-ui-btn.dnd-btn-ghost {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #bdc3c7;
+    border: 1px solid var(--sm-border);
+    color: var(--sm-muted);
+    box-shadow: none;
 }
-.dnd-ui-btn.dnd-btn-ghost:hover { background: rgba(255, 255, 255, 0.08); color: white; }
+.dnd-ui-btn.dnd-btn-ghost:hover { background: rgba(255, 255, 255, 0.08); color: var(--sm-fg); }
 .dnd-ui-btn.flex1 { flex: 1; }
-.dnd-ui-btn.dnd-ai-btn { background: #8e44ad; }
-.dnd-ui-btn.dnd-ai-btn:hover { background: #9b59b6; }
-.dnd-ui-btn.dnd-btn-danger { background: #c0392b; }
-.dnd-ui-btn.dnd-btn-danger:hover { background: #e74c3c; }
+.dnd-ui-btn.dnd-ai-btn { background: transparent; color: var(--sm-accent); border-color: var(--sm-accent); box-shadow: 0 0 8px rgba(var(--sm-accent-rgb), 0.15); }
+.dnd-ui-btn.dnd-ai-btn:hover { background: var(--sm-accent); color: var(--sm-bg); box-shadow: 0 0 16px rgba(var(--sm-accent-rgb), 0.5); }
+.dnd-ui-btn.dnd-btn-danger { background: transparent; color: var(--sm-secondary); border-color: var(--sm-secondary); box-shadow: 0 0 8px rgba(var(--sm-secondary-rgb), 0.15); }
+.dnd-ui-btn.dnd-btn-danger:hover { background: var(--sm-secondary); color: var(--sm-fg); box-shadow: 0 0 16px rgba(var(--sm-secondary-rgb), 0.5); }
 
 .dnd-btn-row {
     display: flex;
     gap: 6px;
+}
+
+/* Рядок "вставити OpenRouter ключ" у панелі налаштувань — з'являється, коли
+   ключа ще немає на сервері, щоб не змушувати юзера йти в інше меню ST. */
+.dnd-openrouter-key-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 2px;
+}
+.dnd-openrouter-key-row .dnd-ui-input {
+    flex: 1;
+}
+.dnd-openrouter-key-row .dnd-ui-btn {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 8px 10px;
 }
 
 .dnd-ui-divider {
@@ -416,17 +504,18 @@
 }
 
 .dnd-ui-input {
-    background: #2c3e50;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--sm-surface);
+    color: var(--sm-fg);
+    font-family: var(--sm-font-mono);
+    border: 1px solid var(--sm-border);
     padding: 8px 10px;
-    border-radius: 6px;
+    border-radius: 2px;
     font-size: 12px;
     outline: none;
     width: 100%;
     box-sizing: border-box;
 }
-.dnd-ui-input:focus { border-color: #2ecc71; }
+.dnd-ui-input:focus { border-color: var(--sm-primary); box-shadow: 0 0 6px rgba(var(--sm-primary-rgb), 0.35); }
 
 .margin-top-5 { margin-top: 5px; }
 .margin-top-10 { margin-top: 10px; }
@@ -434,31 +523,54 @@
 /* =========================================================
    ПАНЕЛЬ ЛОКАЦІЙ — GRID КАРТКИ + ПОШУК
    ========================================================= */
+.dnd-locs-toolbar-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
 .dnd-search-wrap {
     position: relative;
     display: flex;
     align-items: center;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 .dnd-search-wrap svg {
     position: absolute;
     left: 10px;
     width: 14px;
     height: 14px;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     pointer-events: none;
 }
 .dnd-search-input {
-    background: #2c3e50;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--sm-surface);
+    color: var(--sm-fg);
+    font-family: var(--sm-font-mono);
+    border: 1px solid var(--sm-border);
     padding: 8px 10px 8px 32px;
-    border-radius: 8px;
+    border-radius: 2px;
     font-size: 12px;
     outline: none;
     width: 100%;
     box-sizing: border-box;
 }
-.dnd-search-input:focus { border-color: #2ecc71; }
+.dnd-search-input:focus { border-color: var(--sm-primary); box-shadow: 0 0 6px rgba(var(--sm-primary-rgb), 0.35); }
+.dnd-view-toggle-btn {
+    flex: 0 0 auto;
+    width: 34px;
+    background: transparent;
+    color: var(--sm-muted);
+    border: 1px solid var(--sm-border);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+}
+.dnd-view-toggle-btn:hover { color: var(--sm-primary); border-color: var(--sm-primary); }
+.dnd-view-toggle-btn svg { width: 16px; height: 16px; }
 
 .dnd-locs-grid {
     display: grid;
@@ -466,29 +578,42 @@
     gap: 10px;
     max-height: 50vh;
     overflow-y: auto;
-    padding: 2px;
+    /* Extra top/side clearance so the hover lift + shadow below never gets clipped
+       by this scroll container's own edge (was the "cards get cut off" bug). */
+    padding: 6px 6px 10px;
+}
+/* List view — same cards, just laid out as compact rows instead of a square grid. */
+.dnd-locs-grid.list-view {
+    grid-template-columns: 1fr;
 }
 .dnd-loc-card {
     min-height: 110px;
     position: relative;
-    border-radius: 10px;
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid rgba(255, 255, 255, 0.12);
-    background: #1a1a1d;
+    border: 2px solid var(--sm-border);
+    background: var(--sm-surface);
     transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: column;
 }
 .dnd-loc-card:hover {
-    transform: translateY(-3px);
-    border-color: #2ecc71;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+    transform: translate(-2px, -2px);
+    border-color: var(--sm-primary);
+    box-shadow: 3px 3px 0 var(--sm-primary);
 }
 .dnd-loc-card.active {
-    border-color: #2ecc71;
-    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.5);
+    border-color: var(--sm-primary);
+    box-shadow: 0 0 0 2px rgba(var(--sm-primary-rgb), 0.5);
+}
+.dnd-locs-grid.list-view .dnd-loc-card {
+    aspect-ratio: auto;
+    min-height: 0;
+    height: 64px;
+    flex-direction: row;
 }
 .dnd-loc-card-img {
     width: 100%;
@@ -498,34 +623,52 @@
     opacity: 0.85;
     transition: opacity 0.2s;
 }
+.dnd-locs-grid.list-view .dnd-loc-card-img {
+    width: 64px;
+    height: 100%;
+    flex: 0 0 64px;
+}
 .dnd-loc-card:hover .dnd-loc-card-img { opacity: 1; }
 .dnd-loc-card-info {
     padding: 6px 8px;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(var(--sm-panel-rgb), 0.8);
     flex: 0 0 auto;
+}
+.dnd-locs-grid.list-view .dnd-loc-card-info {
+    flex: 1 1 auto;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
 }
 .dnd-loc-card-name {
     font-size: 12px;
     font-weight: bold;
-    color: white;
+    color: var(--sm-fg);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .dnd-loc-card-tags {
     font-size: 10px;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     margin-top: 2px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.dnd-loc-card-rooms {
+    font-size: 10px;
+    color: var(--sm-muted);
+    margin-top: 2px;
+}
 .dnd-loc-card-status {
     position: absolute;
     top: 6px;
     right: 6px;
-    background: rgba(46, 204, 113, 0.9);
-    color: #08341a;
+    background: rgba(var(--sm-primary-rgb), 0.9);
+    color: var(--sm-bg);
     font-size: 10px;
     font-weight: bold;
     padding: 2px 6px;
@@ -536,7 +679,7 @@
 .dnd-loc-empty {
     grid-column: 1 / -1;
     text-align: center;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     font-size: 12px;
     padding: 30px 10px;
 }
@@ -553,7 +696,17 @@
 }
 .dnd-btn-add-confirm {
     flex: 0 0 auto;
-    padding: 6px 8px !important;
+    padding: 8px;
+}
+
+.dnd-loc-actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.dnd-btn-add-confirm {
+    flex: 0 0 auto;
+    padding: 8px !important;
     width: auto !important;
     line-height: 1;
 }
@@ -566,7 +719,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4px;
-    background: #2c3e50;
+    background: var(--sm-surface);
     padding: 4px;
     border-radius: 8px;
 }
@@ -575,7 +728,7 @@
     border: none;
     padding: 8px 10px;
     border-radius: 6px;
-    color: #bdc3c7;
+    color: var(--sm-muted);
     cursor: pointer;
     font-size: 12px;
     font-weight: bold;
@@ -586,8 +739,8 @@
     gap: 6px;
 }
 .dnd-source-toggle-btn.active {
-    background: #27ae60;
-    color: white;
+    background: var(--sm-primary);
+    color: var(--sm-bg);
 }
 .dnd-source-toggle-btn svg { width: 14px; height: 14px; }
 
@@ -598,7 +751,7 @@
     margin: 4px auto 0;
     border: 2px solid rgba(255, 255, 255, 0.15);
     overflow: hidden;
-    background: #2c3e50;
+    background: var(--sm-surface);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -642,11 +795,11 @@
     align-items: center;
     justify-content: center;
     transition: 0.2s;
-    background: #2c3e50;
+    background: var(--sm-surface);
 }
 .dnd-token-list-avatar-wrap:hover {
-    border-color: #2ecc71;
-    box-shadow: 0 0 8px rgba(46, 204, 113, 0.45);
+    border-color: var(--sm-primary);
+    box-shadow: 0 0 8px rgba(var(--sm-primary-rgb), 0.45);
 }
 .dnd-token-list-avatar {
     width: 100%;
@@ -664,8 +817,8 @@
     white-space: nowrap;
 }
 .dnd-token-remove-btn {
-    background: rgba(231, 76, 60, 0.18);
-    color: #e74c3c;
+    background: rgba(var(--sm-secondary-rgb), 0.18);
+    color: var(--sm-secondary);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -675,15 +828,15 @@
     justify-content: center;
     transition: 0.2s;
 }
-.dnd-token-remove-btn:hover { background: #e74c3c; color: white; }
+.dnd-token-remove-btn:hover { background: var(--sm-secondary); color: var(--sm-fg); }
 .dnd-token-remove-btn svg { width: 14px; height: 14px; }
 
 /* =========================================================
    ПАНЕЛЬ НАЛАШТУВАНЬ
    ========================================================= */
 .dnd-current-model-box {
-    background: rgba(46, 204, 113, 0.08);
-    border: 1px solid rgba(46, 204, 113, 0.25);
+    background: rgba(var(--sm-primary-rgb), 0.08);
+    border: 1px solid rgba(var(--sm-primary-rgb), 0.25);
     border-radius: 8px;
     padding: 8px 10px;
     display: flex;
@@ -692,23 +845,80 @@
 }
 .dnd-current-model-label {
     font-size: 10px;
-    color: #a1a1aa;
+    color: var(--sm-muted);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 .dnd-current-model-name {
     font-size: 12px;
-    color: #2ecc71;
+    color: var(--sm-primary);
     font-family: monospace;
     word-break: break-all;
 }
-.dnd-current-model-name.unknown { color: #7f8c8d; }
+.dnd-current-model-name.unknown { color: var(--sm-muted); }
 .dnd-settings-checkbox {
     display: flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
     font-size: 12px;
+}
+.dnd-settings-checkbox input[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    outline: none !important;
+    margin: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    flex-shrink: 0;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 2px solid var(--sm-border) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    filter: none !important;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+    cursor: pointer;
+    position: relative;
+    display: inline-block !important;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+/* ST малює власну галочку (клітинка + чекмарк) через ::before незалежно від
+   стилів самого input — глушимо її тут, свою малюємо нижче через ::after. */
+.dnd-settings-checkbox input[type="checkbox"]::before {
+    content: none !important;
+}
+.dnd-settings-checkbox input[type="checkbox"]:hover {
+    border-color: var(--sm-primary) !important;
+}
+.dnd-settings-checkbox input[type="checkbox"]:checked {
+    background: var(--sm-primary) !important;
+    background-color: var(--sm-primary) !important;
+    border-color: var(--sm-primary) !important;
+    box-shadow: 0 0 8px rgba(var(--sm-primary-rgb), 0.4) !important;
+}
+.dnd-settings-checkbox input[type="checkbox"]:checked::after {
+    content: "" !important;
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--sm-bg);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+/* Статус-хінти в панелі налаштувань (доступність override-моделі тощо) */
+.dnd-hint-status { transition: color 0.15s ease; }
+.dnd-hint-ok { color: var(--sm-primary); }
+.dnd-hint-warning { color: var(--sm-warning); }
+/* Група налаштувань, що тимчасово не має ефекту (напр. "Inject rooms list"
+   поки вимкнено "Inject scene into chat") — видно, але явно неактивна. */
+.dnd-ui-group-disabled {
+    opacity: 0.45;
+    pointer-events: none;
 }
 
 /* =========================================================
@@ -726,6 +936,9 @@
     display: flex;
     justify-content: center;
     z-index: 5;
+    /* #dnd-session-arrow навмисно стирчить над цим боксом (top: -25px) — порізані
+       кути (.dnd-vtt-widget clip-path) обрізали б її, тому тут вимикаємо. */
+    clip-path: none;
 }
 #dnd-session-tiles {
     display: flex;
@@ -733,6 +946,24 @@
     height: auto;
     overflow-y: hidden;
     overflow-x: auto;
+    /* Headroom so the hover lift below doesn't get clipped by overflow-y: hidden. */
+    padding-top: 8px;
+    margin-top: -8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--sm-primary-rgb), 0.4) transparent;
+}
+#dnd-session-tiles::-webkit-scrollbar {
+    height: 5px;
+}
+#dnd-session-tiles::-webkit-scrollbar-track {
+    background: transparent;
+}
+#dnd-session-tiles::-webkit-scrollbar-thumb {
+    background: rgba(var(--sm-primary-rgb), 0.4);
+    border-radius: 3px;
+}
+#dnd-session-tiles::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--sm-primary-rgb), 0.7);
 }
 #dnd-session-arrow {
     position: absolute;
@@ -741,7 +972,7 @@
     transform: translateX(-50%);
     width: 50px;
     height: 30px;
-    background: rgba(20, 20, 25, 0.92);
+    background: rgba(var(--sm-panel-rgb), 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 12px 12px 0 0;
@@ -749,7 +980,7 @@
     border-bottom: none;
     text-align: center;
     line-height: 26px;
-    color: #2ecc71;
+    color: var(--sm-primary);
     cursor: pointer;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
     transition: 0.3s ease-in-out;
@@ -763,7 +994,7 @@
 #dnd-session-drawer.open { bottom: 20px; }
 #dnd-session-drawer.open #dnd-session-arrow {
     transform: translateX(-50%) rotate(180deg);
-    color: white;
+    color: var(--sm-fg);
 }
 
 /* Стрілки перемикання кімнат (current location) */
@@ -774,10 +1005,10 @@
     width: 40px;
     height: 56px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(20, 20, 25, 0.85);
+    background: rgba(var(--sm-panel-rgb), 0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: white;
+    color: var(--sm-fg);
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -786,9 +1017,9 @@
     transition: background 0.2s, color 0.2s;
     padding: 0;
 }
-.dnd-room-nav:hover { background: rgba(46, 204, 113, 0.3); color: white; }
+.dnd-room-nav:hover { background: rgba(var(--sm-primary-rgb), 0.3); color: var(--sm-fg); }
 .dnd-room-nav:disabled { opacity: 0.3; cursor: not-allowed; }
-.dnd-room-nav:disabled:hover { background: rgba(20, 20, 25, 0.85); }
+.dnd-room-nav:disabled:hover { background: rgba(var(--sm-panel-rgb), 0.85); }
 .dnd-room-nav svg { width: 22px; height: 22px; }
 #dnd-room-prev { right: 64px; }
 #dnd-room-next { right: 14px; }
@@ -799,9 +1030,10 @@
 .dnd-session-tile {
     width: 100px;
     height: 100px;
-    background: #000;
-    border-radius: 12px;
-    border: 3px solid #444;
+    background: var(--sm-bg);
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    border: 3px solid var(--sm-border);
     cursor: pointer;
     overflow: hidden;
     position: relative;
@@ -809,12 +1041,13 @@
     flex: 0 0 auto;
 }
 .dnd-session-tile:hover {
-    transform: translateY(-5px);
-    border-color: #2ecc71;
+    transform: translate(-2px, -2px);
+    border-color: var(--sm-primary);
+    box-shadow: 3px 3px 0 var(--sm-primary);
 }
 .dnd-session-tile.active {
-    border-color: #2ecc71;
-    box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+    border-color: var(--sm-primary);
+    box-shadow: 0 0 15px rgba(var(--sm-primary-rgb), 0.5);
 }
 .dnd-session-tile-img {
     width: 100%;
@@ -828,7 +1061,7 @@
     left: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
-    color: white;
+    color: var(--sm-fg);
     font-size: 11px;
     padding: 5px;
     text-align: center;
@@ -840,8 +1073,8 @@
     right: 5px;
     width: 22px;
     height: 22px;
-    background: rgba(231, 76, 60, 0.85);
-    color: white;
+    background: rgba(var(--sm-secondary-rgb), 0.85);
+    color: var(--sm-fg);
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -849,7 +1082,7 @@
     transition: 0.2s;
     cursor: pointer;
 }
-.dnd-session-tile-remove:hover { background: #e74c3c; }
+.dnd-session-tile-remove:hover { background: var(--sm-secondary); }
 .dnd-session-tile-remove svg { width: 12px; height: 12px; }
 .dnd-session-tile:hover .dnd-session-tile-remove { display: flex; }
 .dnd-session-tile-remove { display: none; }
@@ -859,24 +1092,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #1a1a1d;
-    border-color: #444;
+    background: var(--sm-surface);
+    border-color: var(--sm-border);
 }
-.dnd-session-tile-back:hover { border-color: #2ecc71; }
+.dnd-session-tile-back:hover { border-color: var(--sm-primary); }
 .dnd-session-tile-back-icon {
     width: 24px;
     height: 24px;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     transition: 0.2s;
 }
-.dnd-session-tile-back:hover .dnd-session-tile-back-icon { color: #2ecc71; }
+.dnd-session-tile-back:hover .dnd-session-tile-back-icon { color: var(--sm-primary); }
 .dnd-session-tile-back .dnd-session-tile-name {
     position: static;
     background: none;
-    color: #a1a1aa;
+    color: var(--sm-muted);
     padding-top: 6px;
 }
-.dnd-session-tile-back:hover .dnd-session-tile-name { color: white; }
+.dnd-session-tile-back:hover .dnd-session-tile-name { color: var(--sm-fg); }
 
 /* =========================================================
    КОНТЕКСТНЕ МЕНЮ АВАТАРА
@@ -884,7 +1117,7 @@
 .dnd-avatar-menu {
     position: fixed;
     z-index: 10002;
-    background: rgba(20, 20, 25, 0.97);
+    background: rgba(var(--sm-panel-rgb), 0.97);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -899,7 +1132,7 @@
 .dnd-avatar-menu button {
     background: transparent;
     border: none;
-    color: #ecf0f1;
+    color: var(--sm-fg);
     cursor: pointer;
     padding: 8px 10px;
     border-radius: 6px;
@@ -912,8 +1145,8 @@
     font-family: sans-serif;
 }
 .dnd-avatar-menu button:hover {
-    background: rgba(46, 204, 113, 0.18);
-    color: #fff;
+    background: rgba(var(--sm-primary-rgb), 0.18);
+    color: var(--sm-fg);
 }
 .dnd-avatar-menu button svg {
     width: 16px;
@@ -937,7 +1170,7 @@
     justify-content: center;
 }
 .dnd-gallery-modal {
-    background: rgba(20, 20, 25, 0.97);
+    background: rgba(var(--sm-panel-rgb), 0.97);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 12px;
@@ -959,8 +1192,8 @@
 }
 .dnd-gallery-search {
     flex: 1;
-    background: #2c3e50;
-    color: white;
+    background: var(--sm-surface);
+    color: var(--sm-fg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 8px 10px;
     border-radius: 6px;
@@ -968,11 +1201,11 @@
     outline: none;
     box-sizing: border-box;
 }
-.dnd-gallery-search:focus { border-color: #2ecc71; }
+.dnd-gallery-search:focus { border-color: var(--sm-primary); }
 .dnd-gallery-close {
     background: none;
     border: none;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     cursor: pointer;
     padding: 4px;
     border-radius: 6px;
@@ -981,7 +1214,7 @@
     justify-content: center;
     transition: 0.2s;
 }
-.dnd-gallery-close:hover { color: white; background: rgba(255, 255, 255, 0.1); }
+.dnd-gallery-close:hover { color: var(--sm-fg); background: rgba(255, 255, 255, 0.1); }
 .dnd-gallery-close svg { width: 18px; height: 18px; }
 .dnd-gallery-grid {
     display: grid;
@@ -1002,8 +1235,8 @@
     transition: 0.2s;
 }
 .dnd-gallery-item:hover {
-    border-color: #2ecc71;
-    box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+    border-color: var(--sm-primary);
+    box-shadow: 0 0 10px rgba(var(--sm-primary-rgb), 0.4);
     transform: scale(1.08);
 }
 .dnd-gallery-item img {
@@ -1014,7 +1247,7 @@
 .dnd-gallery-empty {
     grid-column: 1 / -1;
     text-align: center;
-    color: #7f8c8d;
+    color: var(--sm-muted);
     padding: 40px;
 }
 
@@ -1041,7 +1274,7 @@
         position: fixed;
         left: auto;
         left: 20px;
-        top: 250px;
+        top: 310px; /* нижче тулбару навіть коли видно 4-ту кнопку (AI: Update positions) */
         z-index: 1100;
     }
 
@@ -1129,11 +1362,19 @@
 
 /* Дуже вузькі екрани */
 @media (max-width: 380px) {
-    .dnd-side-panel {
-        left: 64px !important;
-        right: 6px !important;
+    .dnd-loc-card { aspect-ratio: auto; height: 80px; min-height: 80px; }
+    .dnd-side-panel { width: 100vw; }
+}
+
+@media (min-width: 769px) {
+    #dnd-locations-panel {
+        width: 500px;
     }
     .dnd-locs-grid {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* Іконка, що обертається, для "зайнятого" стану AI-кнопок (замість статичної "refresh") */
+@keyframes dnd-icon-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.dnd-icon-spin { display: inline-flex; animation: dnd-icon-spin 0.8s linear infinite; }
