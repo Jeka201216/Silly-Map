@@ -1,13 +1,13 @@
-import { eventSource, event_types, generateQuietPrompt, generateRaw, getThumbnailUrl, getRequestHeaders, characters, this_chid, name1, main_api, getCurrentChatId } from "../../../../script.js";
-import { SECRET_KEYS, secret_state, readSecretState, writeSecret } from "../../secrets.js";
+import { eventSource, event_types, generateQuietPrompt, generateRaw, getThumbnailUrl, getRequestHeaders, characters, this_chid, name1, main_api, getCurrentChatId } from "/script.js";
+import { SECRET_KEYS, secret_state, readSecretState, writeSecret } from "/scripts/secrets.js";
 import { toast } from "./toast.js";
 import { ICONS } from "./icons.js";
 import { getWalkableGrid, findGridPath } from "./pathfinding.js";
-import { user_avatar } from "../../personas.js";
-import { groups, selected_group } from "../../group-chats.js";
-import { getChatCompletionModel, openai_settings, chat_completion_sources } from "../../openai.js";
-import { getTextGenModel } from "../../textgen-settings.js";
-import { isMobile } from "../../RossAscends-mods.js";
+import { user_avatar } from "/scripts/personas.js";
+import { groups, selected_group } from "/scripts/group-chats.js";
+import { getChatCompletionModel, openai_settings, chat_completion_sources } from "/scripts/openai.js";
+import { getTextGenModel } from "/scripts/textgen-settings.js";
+import { isMobile } from "/scripts/RossAscends-mods.js";
 
 // Іконка ICONS.refresh виглядає як "оновити" — у "зайнятому" стані AI-кнопок
 // обгортаємо її в клас, що крутиться (style.css: .dnd-icon-spin), щоб було
@@ -195,7 +195,10 @@ jQuery(async () => {
         </div>
     `;
 
-    const ASSETS_PATH = "/scripts/extensions/silly-map/assets/";
+    // Resolved from this module's own URL — works no matter where the extension
+    // folder actually lives (extensions/, extensions/third-party/<any-name>/, any
+    // casing), unlike a hardcoded path.
+    const ASSETS_PATH = new URL("assets/", import.meta.url).href;
     // Server plugin that lets "Install by ID" work when SillyTavern runs on a remote
     // host (browser File System Access can't reach the server's disk there). Off by
     // default on any given server — see checkInstallerPluginAvailability().
@@ -1437,9 +1440,9 @@ jQuery(async () => {
             <div id="dnd-gallery-overlay" class="dnd-gallery-overlay">
                 <div class="dnd-gallery-modal">
                     <div class="dnd-gallery-header">
-                        <span class="dnd-panel-title">${ICONS.image} Оберіть аватар</span>
+                        <span class="dnd-panel-title">${ICONS.image} Choose avatar</span>
                         <input id="dnd-gallery-search" class="dnd-gallery-search" placeholder="Search by filename..." autocomplete="off">
-                        <button class="dnd-gallery-close" title="Закрити">${ICONS.close}</button>
+                        <button class="dnd-gallery-close" title="Close">${ICONS.close}</button>
                     </div>
                     <div id="dnd-gallery-grid" class="dnd-gallery-grid"></div>
                 </div>
@@ -1510,8 +1513,8 @@ jQuery(async () => {
 
         avatarMenu = $(`
             <div class="dnd-avatar-menu">
-                <button data-action="gallery">${ICONS.image} Галерея</button>
-                <button data-action="file">${ICONS.file} Файл</button>
+                <button data-action="gallery">${ICONS.image} Gallery</button>
+                <button data-action="file">${ICONS.file} File</button>
             </div>
         `);
         $("body").append(avatarMenu);
@@ -2247,7 +2250,7 @@ Example of expected JSON output:
             const rawResponse = await callAIDirector(prompt);
             const text = rawResponse || "";
             const jsonMatch = text.match(/\[[\s\S]*\]/);
-            if (!jsonMatch) throw new Error("Не знайдено JSON у відповіді.");
+            if (!jsonMatch) throw new Error("No JSON found in the response.");
             const actions = JSON.parse(jsonMatch[0]);
 
             for (const act of actions) {
@@ -2268,7 +2271,7 @@ Example of expected JSON output:
                     if (act.action === "add") {
                         const targetLocId = act.locId || gameState.viewingLocId;
                         if (!gameState.activeLocations[targetLocId]) {
-                            if (!confirm(`ШІ намагається додати ${act.name} у неактивну локацію: ${targetLocId}. Активувати її?`)) continue;
+                            if (!confirm(`The AI is trying to add ${act.name} to an inactive location: ${targetLocId}. Activate it?`)) continue;
                             gameState.activeLocations[targetLocId] = { tokens: {} };
                         }
                         const tLocState = gameState.activeLocations[targetLocId];
@@ -2306,7 +2309,7 @@ Example of expected JSON output:
                         const { locId: sourceLocId, locState: sourceLocState, token } = found;
                         const targetLocId = act.locId || sourceLocId;
                         if (!gameState.activeLocations[targetLocId]) {
-                            if (!confirm(`${token.name} пішов у ${targetLocId}. Активувати цю локацію?`)) continue;
+                            if (!confirm(`${token.name} moved to ${targetLocId}. Activate this location?`)) continue;
                             gameState.activeLocations[targetLocId] = { tokens: {} };
                         }
                         const targetLocState = gameState.activeLocations[targetLocId];
